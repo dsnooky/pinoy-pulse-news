@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102c52">
+<meta name="description" content="Latest Philippine headlines from public RSS feeds of news publishers.">
+<title>Pinoy Pulse — Philippine News</title>
+<style>
+:root{--navy:#102c52;--blue:#1769aa;--red:#ed3b46;--ink:#172338;--muted:#6d7788;--line:#e7ebf1;--paper:#f5f7fb;--card:#fff;--shadow:0 10px 28px rgba(19,40,70,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}button,input{font:inherit}.topline{height:5px;background:linear-gradient(90deg,var(--red) 0 34%,#fff 34% 67%,var(--blue) 67%)}
+.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.masthead{background:#fff;border-bottom:1px solid var(--line)}.brandrow{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:23px 0}.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:13px;background:var(--navy);display:grid;place-items:center;color:#fff;font-weight:900;font-size:22px;box-shadow:0 5px 12px #102c522b}.brand h1{font-size:26px;line-height:1;margin:0;letter-spacing:-1px}.brand h1 span{color:var(--red)}.tagline{color:var(--muted);font-size:12px;margin-top:5px}.today{text-align:right;color:var(--muted);font-size:13px}.today strong{display:block;color:var(--ink);font-size:14px}
+.nav{background:var(--navy);color:#fff}.navinner{display:flex;align-items:center;gap:4px;overflow:auto;scrollbar-width:none}.nav button{background:transparent;border:0;color:#d9e5f5;padding:14px 16px;white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent}.nav button.active,.nav button:hover{color:#fff;border-bottom-color:var(--red)}
+.breaking{background:#fff;border-bottom:1px solid var(--line)}.breakinginner{display:flex;gap:12px;align-items:center;min-height:46px;font-size:13px}.breakinglabel{background:var(--red);color:#fff;font-weight:800;letter-spacing:.5px;padding:5px 9px;border-radius:4px;white-space:nowrap}.breakingtext{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#33445c}
+main{padding:28px 0 48px}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px}.eyebrow{font-size:11px;letter-spacing:1.8px;font-weight:800;color:var(--red);text-transform:uppercase}.sectionhead h2{font-size:26px;line-height:1.2;letter-spacing:-.7px;margin:4px 0 0}.subhead{font-size:13px;color:var(--muted);margin-top:5px}.controls{display:flex;gap:9px;align-items:center}.search{width:min(260px,42vw);border:1px solid #dce2eb;background:#fff;border-radius:10px;padding:10px 12px;outline:none}.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769aa18}.refresh{border:0;border-radius:10px;padding:10px 14px;background:var(--navy);color:#fff;font-weight:700;cursor:pointer}.refresh:disabled{opacity:.55;cursor:wait}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}.leadgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:22px}.leadcard,.news-card,.sidebox{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow)}.leadcard{padding:22px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between}.leadcard.primary{background:linear-gradient(135deg,#102c52,#1d4d80);color:#fff;border:0}.pill{display:inline-flex;align-items:center;gap:6px;width:max-content;border-radius:99px;padding:5px 9px;font-size:10px;letter-spacing:.8px;font-weight:900;text-transform:uppercase;background:#edf4ff;color:#18558f}.primary .pill{background:#ffffff20;color:#fff}.leadcard h3{font-size:clamp(20px,2.4vw,29px);line-height:1.22;letter-spacing:-.6px;margin:16px 0}.leadcard:not(.primary) h3{font-size:21px}.meta{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:7px;align-items:center}.primary .meta{color:#d7e5f6}.dot{width:3px;height:3px;border-radius:50%;background:currentColor;display:inline-block}
+.newsgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.news-card{padding:17px;display:flex;flex-direction:column;min-height:185px;transition:transform .15s,box-shadow .15s}.news-card:hover{transform:translateY(-2px);box-shadow:0 14px 30px #13284612}.news-card h3{font-size:17px;line-height:1.35;margin:12px 0 10px;letter-spacing:-.2px}.news-card .meta{margin-top:auto;padding-top:14px}.category{font-size:10px;letter-spacing:.7px;text-transform:uppercase;font-weight:900;color:var(--blue)}.cardfoot{display:flex;align-items:center;justify-content:space-between;gap:8px}.read{font-size:12px;color:var(--blue);font-weight:800;white-space:nowrap}
+.sidebar{display:grid;gap:16px}.sidebox{padding:19px}.sidebox h3{margin:0 0 13px;font-size:16px;letter-spacing:-.3px}.source-list{display:grid;gap:12px}.source{display:flex;gap:10px;align-items:flex-start;font-size:13px}.sourceicon{flex:0 0 31px;height:31px;border-radius:9px;background:#eef3f9;color:var(--navy);display:grid;place-items:center;font-size:11px;font-weight:900}.source small{display:block;color:var(--muted);margin-top:2px}.tip{font-size:13px;color:var(--muted);margin:0}.status{font-size:12px;color:var(--muted);margin:14px 0 0}.empty,.error{padding:30px;text-align:center;background:#fff;border:1px dashed #d6deea;border-radius:14px;color:var(--muted);grid-column:1/-1}.error strong{color:var(--ink);display:block;margin-bottom:5px}.footer{background:#0b203d;color:#d4dfed;padding:28px 0;font-size:12px}.footerrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer strong{color:#fff}.footer a{text-decoration:underline}.disclaimer{max-width:750px;color:#aebdd0;margin-top:9px}.loading{padding:24px;color:var(--muted);grid-column:1/-1}
+
+.affiliate-section{margin:28px 0 24px}.affiliate-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:14px}.affiliate-head h2{font-size:22px;line-height:1.2;letter-spacing:-.5px;margin:4px 0 0}.affiliate-note{font-size:12px;color:var(--muted)}.affiliate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.affiliate-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:190px}.affiliate-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.ad-label{font-size:10px;font-weight:900;letter-spacing:.8px;color:#81520a;background:#fff3d6;border-radius:5px;padding:4px 7px}.affiliate-platform{font-size:11px;font-weight:800;color:var(--muted)}.affiliate-card h3{font-size:16px;line-height:1.35;margin:14px 0 7px}.affiliate-card p{font-size:13px;color:var(--muted);margin:0 0 14px}.affiliate-cta{display:block;text-align:center;margin-top:auto;background:var(--red);color:white;padding:10px 12px;border-radius:9px;font-weight:800;font-size:13px}.affiliate-disclosure{font-size:11px;line-height:1.5;color:var(--muted);margin-top:10px}
+@media(max-width:850px){.affiliate-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.affiliate-grid{grid-template-columns:1fr}.affiliate-head{align-items:flex-start;flex-direction:column}}
+
+@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{grid-template-columns:repeat(2,minmax(0,1fr))}.leadgrid{grid-template-columns:1fr 1fr}.today{display:none}}
+@media(max-width:560px){.wrap{width:min(100% - 22px,1180px)}.brandrow{padding:17px 0}.brand h1{font-size:23px}.tagline{font-size:11px}.logo{width:41px;height:41px}.nav button{padding:12px 13px;font-size:13px}.breakinginner{min-height:42px}.sectionhead{align-items:flex-start;flex-direction:column}.sectionhead h2{font-size:23px}.controls{width:100%}.search{width:100%;min-width:0;flex:1}.refresh{padding:10px 12px}.leadgrid{grid-template-columns:1fr}.leadcard{min-height:190px}.newsgrid{grid-template-columns:1fr}.news-card{min-height:155px}.sidebar{grid-template-columns:1fr}main{padding-top:22px}}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+<header class="masthead"><div class="wrap brandrow">
+<a class="brand" href="#" aria-label="Pinoy Pulse home"><div class="logo">P</div><div><h1>Pinoy <span>Pulse</span></h1><div class="tagline">The Philippines, in the know.</div></div></a>
+<div class="today"><strong id="dateToday">Philippine Headlines</strong><span>Updated from publisher RSS feeds</span></div>
+</div></header>
+<nav class="nav"><div class="wrap navinner" id="nav">
+<button class="active" data-category="All">Top Stories</button><button data-category="Nation">Nation</button><button data-category="Politics">Politics</button><button data-category="Business">Business</button><button data-category="World">World</button><button data-category="Sports">Sports</button><button data-category="Entertainment">Entertainment</button><button data-category="Technology">Technology</button>
+</div></nav>
+<div class="breaking"><div class="wrap breakinginner"><span class="breakinglabel">LATEST</span><span class="breakingtext" id="ticker">Loading the latest headlines…</span></div></div>
+<main class="wrap">
+<div class="sectionhead"><div><div class="eyebrow">What’s happening</div><h2 id="sectionTitle">Top stories in the Philippines</h2><div class="subhead" id="updated">Fetching headlines from news publishers…</div></div>
+<div class="controls"><input class="search" id="search" type="search" placeholder="Search headlines…" aria-label="Search headlines"><button class="refresh" id="refresh">↻ Refresh</button></div></div>
+
+<section class="affiliate-section" aria-labelledby="affiliateTitle">
+  <div class="affiliate-head">
+    <div><div class="eyebrow">Partner offers</div><h2 id="affiliateTitle">Deals &amp; Finds</h2><div class="subhead">Useful picks from online stores</div></div>
+    <div class="affiliate-note">Sponsored / affiliate recommendations</div>
+  </div>
+  <div class="affiliate-grid" id="affiliateGrid">
+    <div class="affiliate-card"><div class="affiliate-top"><span class="ad-label">ADVERTISEMENT</span><span class="affiliate-platform">Shopee</span></div><h3>Everyday Finds</h3><p>Add your product, promotion, or curated Shopee finds here.</p><a class="affiliate-cta" href="#affiliate-setup" onclick="return false">Add affiliate link</a></div>
+    <div class="affiliate-card"><div class="affiliate-top"><span class="ad-label">ADVERTISEMENT</span><span class="affiliate-platform">TikTok Shop</span></div><h3>Trending Products</h3><p>Feature useful products and popular finds for your readers.</p><a class="affiliate-cta" href="#affiliate-setup" onclick="return false">Add affiliate link</a></div>
+    <div class="affiliate-card"><div class="affiliate-top"><span class="ad-label">ADVERTISEMENT</span><span class="affiliate-platform">Lazada</span></div><h3>Smart Shopping Picks</h3><p>Highlight deals with your own approved affiliate tracking link.</p><a class="affiliate-cta" href="#affiliate-setup" onclick="return false">Add affiliate link</a></div>
+  </div>
+  <p class="affiliate-disclosure">Affiliate disclosure: Pinoy Pulse may earn a commission when you buy through affiliate links. This does not affect the news coverage. Replace these demo cards with your real affiliate links before publishing.</p>
+</section>
+
+<div class="layout"><section><div class="leadgrid" id="leadgrid"><div class="loading">Loading headlines…</div></div><div class="newsgrid" id="newsgrid"></div><div class="status" id="status" aria-live="polite"></div></section>
+<aside class="sidebar">
+<div class="sidebox"><h3>News sources</h3><div class="source-list">
+<div class="source"><div class="sourceicon">GMA</div><div><strong>GMA News</strong><small>Nation, regions, public affairs</small></div></div>
+<div class="source"><div class="sourceicon">ABS</div><div><strong>ABS-CBN News</strong><small>Breaking news and current affairs</small></div></div>
+<div class="source"><div class="sourceicon">INQ</div><div><strong>Inquirer.net</strong><small>National and local headlines</small></div></div>
+<div class="source"><div class="sourceicon">PH</div><div><strong>Philstar</strong><small>News and public issues</small></div></div>
+<div class="source"><div class="sourceicon">R</div><div><strong>Rappler</strong><small>News, analysis and explainers</small></div></div>
+</div><p class="status">Feeds may be temporarily unavailable or rate-limited.</p></div>
+<div class="sidebox"><h3>About this page</h3><p class="tip">Pinoy Pulse gathers headlines from public RSS feeds. Select a headline to read the original story on its publisher’s website. Articles and reporting belong to their respective publishers.</p></div>
+<div class="sidebox"><h3>Stay informed</h3><p class="tip">Check the publication date and compare important or developing stories across trusted news organizations before sharing.</p></div>
+</aside></div>
+</main>
+<footer class="footer"><div class="wrap"><div class="footerrow"><div><strong>Pinoy Pulse</strong> · Independent RSS headline reader</div><div>Built for mobile, tablet and desktop</div></div><div class="disclaimer">Affiliate ads are labelled and should use your own approved tracking URLs. Replace the demo items in AFFILIATE_ADS inside index.html before publishing. This website displays headlines and brief descriptions supplied by third-party RSS feeds. It is not affiliated with the publishers listed. RSS availability and article metadata depend on each publisher and the feed service. No article is presented as independently verified by this site.</div></div></footer>
+<script>
+const FEEDS = [
+ {name:"GMA News",url:"https://data.gmanews.tv/gno/rss/news/feed.xml",category:"Nation"},
+ {name:"ABS-CBN News",url:"https://www.abs-cbn.com/rss.xml",category:"Nation"},
+ {name:"Inquirer.net",url:"https://www.inquirer.net/fullfeed",category:"Nation"},
+ {name:"Philstar",url:"https://www.philstar.com/rss/headlines",category:"Nation"},
+ {name:"Rappler",url:"https://www.rappler.com/feed/",category:"Politics"},
+ {name:"BusinessWorld",url:"https://www.bworldonline.com/feed/",category:"Business"}
+];
+// Browser-only demo uses RSS2JSON as a public feed-to-JSON bridge. For production, use your own serverless proxy.
+const API = "https://api.rss2json.com/v1/api.json?rss_url=";
+let articles=[], activeCategory="All", loading=false;
+const $=id=>document.getElementById(id);
+function clean(s=""){const d=document.createElement("div");d.innerHTML=s;return (d.textContent||d.innerText||"").replace(/\s+/g," ").trim()}
+function safeUrl(url){try{const u=new URL(url);return ["https:","http:"].includes(u.protocol)?u.href:"#"}catch{return "#"}}
+function dateText(value){if(!value)return "Recently published";const d=new Date(value);if(Number.isNaN(+d))return "Recently published";return d.toLocaleString("en-PH",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit",timeZone:"Asia/Manila"})}
+function guessCategory(a){
+ const t=(a.title+" "+a.description+" "+a.source).toLowerCase();
+ if(/basketball|football|volleyball|nba|fiba|sport|athlete|olympic|uaap|pba/.test(t))return "Sports";
+ if(/showbiz|celebrity|movie|concert|actor|actress|singer|entertainment|love team/.test(t))return "Entertainment";
+ if(/technology|tech |gadget|cyber|artificial intelligence|smartphone|digital/.test(t))return "Technology";
+ if(/business|economy|peso|stock market|inflation|company|trade|finance|bank|fuel price/.test(t))return "Business";
+ if(/world|china|united states|trump|international|overseas|global/.test(t))return "World";
+ if(/senate|senator|congress|president|election|marcos|duterte|politic|bill filed|impeach/.test(t))return "Politics";
+ return a.category||"Nation";
+}
+function uniq(list){const seen=new Set();return list.filter(a=>{const k=(a.link||"").split("#")[0]||a.title.toLowerCase();if(seen.has(k))return false;seen.add(k);return true})}
+async function getFeed(feed){
+ const response=await fetch(API+encodeURIComponent(feed.url),{cache:"no-store"});
+ if(!response.ok)throw Error("HTTP "+response.status);
+ const data=await response.json();
+ if(data.status!=="ok")throw Error(data.message||"Feed unavailable");
+ return (data.items||[]).map(item=>({title:clean(item.title)||"Untitled story",description:clean(item.description||item.content||"").slice(0,260),link:safeUrl(item.link),date:item.pubDate||"",source:feed.name,category:feed.category,thumbnail:item.thumbnail||""})).filter(a=>a.title&&a.link!=="#");
+}
+function matches(a){const q=$("search").value.trim().toLowerCase();return (!q||(a.title+" "+a.description+" "+a.source).toLowerCase().includes(q))&&(activeCategory==="All"||guessCategory(a)===activeCategory)}
+function storyCard(a,primary=false){const cat=guessCategory(a);return `<a class="leadcard ${primary?"primary":""}" href="${safeUrl(a.link)}" target="_blank" rel="noopener noreferrer"><div><span class="pill">${cat}</span><h3>${escapeHtml(a.title)}</h3>${!primary&&a.description?`<div class="tip">${escapeHtml(a.description.slice(0,135))}${a.description.length>135?"…":""}</div>`:""}</div><div class="meta"><strong>${escapeHtml(a.source)}</strong><span class="dot"></span><span>${escapeHtml(dateText(a.date))}</span><span class="read">Read story ↗</span></div></a>`}
+function card(a){return `<a class="news-card" href="${safeUrl(a.link)}" target="_blank" rel="noopener noreferrer"><div class="cardfoot"><span class="category">${escapeHtml(guessCategory(a))}</span><span class="read">Read ↗</span></div><h3>${escapeHtml(a.title)}</h3>${a.description?`<div class="tip">${escapeHtml(a.description.slice(0,155))}${a.description.length>155?"…":""}</div>`:""}<div class="meta"><strong>${escapeHtml(a.source)}</strong><span class="dot"></span><span>${escapeHtml(dateText(a.date))}</span></div></a>`}
+function escapeHtml(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(){
+ const list=articles.filter(matches).sort((a,b)=>(new Date(b.date)||0)-(new Date(a.date)||0));
+ $("sectionTitle").textContent=activeCategory==="All"?"Top stories in the Philippines":activeCategory+" headlines";
+ $("leadgrid").innerHTML=list.length?storyCard(list[0],true)+(list[1]?storyCard(list[1]):""):'<div class="empty">No headlines match your search. Try another keyword or category.</div>';
+ $("newsgrid").innerHTML=list.slice(2).map(card).join("");
+ if(list.length<=2)$("newsgrid").innerHTML="";
+ $("status").textContent=`Showing ${list.length} headline${list.length===1?"":"s"} · Headlines link to original publisher pages.`;
+ if(list[0])$("ticker").textContent=list.slice(0,5).map(a=>a.title).join("  •  ");
+}
+async function loadFeeds(){
+ if(loading)return;loading=true;$("refresh").disabled=true;$("refresh").textContent="Loading…";$("status").textContent="Refreshing feeds…";
+ const results=await Promise.allSettled(FEEDS.map(getFeed));
+ const fresh=results.filter(r=>r.status==="fulfilled").flatMap(r=>r.value);
+ const failed=results.filter(r=>r.status==="rejected").length;
+ if(fresh.length){articles=uniq(fresh).sort((a,b)=>new Date(b.date)-new Date(a.date));render();$("updated").textContent=`Updated ${new Date().toLocaleTimeString("en-PH",{hour:"numeric",minute:"2-digit",timeZone:"Asia/Manila"})} Philippine time · ${fresh.length} feed items`;if(failed)$("status").textContent+=` (${failed} feed${failed===1?"":"s"} could not load.)`;}
+ else{$("leadgrid").innerHTML=`<div class="error"><strong>Couldn’t load the news feeds</strong>Your browser or the public feed bridge may be blocking requests. Try Refresh, or deploy with a serverless RSS proxy for more reliable loading.</div>`;$("newsgrid").innerHTML="";$("ticker").textContent="RSS feed connection unavailable";$("updated").textContent="Live feed connection unavailable";$("status").textContent="Check your internet connection and try again."}
+ loading=false;$("refresh").disabled=false;$("refresh").textContent="↻ Refresh";
+}
+$("nav").addEventListener("click",e=>{const b=e.target.closest("button[data-category]");if(!b)return;activeCategory=b.dataset.category;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x===b));render()});
+$("search").addEventListener("input",render);$("refresh").addEventListener("click",loadFeeds);
+
+// AFFILIATE AD SETUP: Replace each demo URL with your own approved affiliate tracking link.
+// Update product names and descriptions. Keep the "ADVERTISEMENT" / affiliate disclosure visible.
+const AFFILIATE_ADS = [
+ {platform:"Shopee",title:"Everyday Finds",description:"Add a short, honest description of your featured product or deal.",label:"Shop the find",url:""},
+ {platform:"TikTok Shop",title:"Trending Products",description:"Feature a useful product your audience may want to discover.",label:"View product",url:""},
+ {platform:"Lazada",title:"Smart Shopping Picks",description:"Showcase a deal or product using your own affiliate link.",label:"See the deal",url:""}
+];
+function renderAffiliateAds(){
+ const grid=$("affiliateGrid"); if(!grid)return;
+ grid.innerHTML=AFFILIATE_ADS.map(ad=>{
+   const valid=!!(ad.url&&/^https?:\/\//i.test(ad.url));
+   return `<article class="affiliate-card"><div class="affiliate-top"><span class="ad-label">ADVERTISEMENT</span><span class="affiliate-platform">${escapeHtml(ad.platform)}</span></div><h3>${escapeHtml(ad.title)}</h3><p>${escapeHtml(ad.description)}</p>${valid?`<a class="affiliate-cta" href="${safeUrl(ad.url)}" target="_blank" rel="sponsored nofollow noopener noreferrer">${escapeHtml(ad.label||"Shop now")} ↗</a>`:`<span class="affiliate-cta" style="opacity:.65;cursor:not-allowed">Add your affiliate link</span>`}</article>`;
+ }).join("");
+}
+
+$("dateToday").textContent=new Date().toLocaleDateString("en-PH",{weekday:"long",month:"long",day:"numeric",year:"numeric",timeZone:"Asia/Manila"});
+renderAffiliateAds();
+loadFeeds();
+// Refresh headlines automatically every 10 minutes while the page is open.
+setInterval(()=>{if(!document.hidden)loadFeeds()},10*60*1000);
+</script>
+</body>
+</html>
